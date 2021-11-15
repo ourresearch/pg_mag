@@ -250,6 +250,8 @@ CREATE TABLE mag.Papers(
     Rank INT,
     Doi VARCHAR(255),
     DocType VARCHAR(20),
+    Genre TEXT,
+    IsParatext BOOLEAN,
     PaperTitle TEXT,
     OriginalTitle TEXT,
     BookTitle TEXT,
@@ -270,7 +272,14 @@ CREATE TABLE mag.Papers(
     OriginalVenue TEXT,
     FamilyId BIGINT,
     FamilyRank INT,
-    CreatedDate DATE
+    DocSubTypes TEXT,
+    OaStatus TEXT,
+    BestUrl TEXT,
+    BestFreeUrl TEXT,
+    BestFreeVersion TEXT,
+    DoiLower TEXT,
+    CreatedDate DATE,
+    UpdatedDate DATE
   );
 
 
@@ -278,7 +287,7 @@ CREATE TABLE mag.Papers(
 \! tr -d '\000' < Papers_.txt > Papers__.txt
 
 
-\COPY mag.Papers(PaperId, Rank, Doi, DocType, PaperTitle, OriginalTitle, BookTitle, Year, Date, OnlineDate, Publisher, JournalId, ConferenceSeriesId, ConferenceInstanceId, Volume, Issue, FirstPage, LastPage, ReferenceCount, CitationCount, EstimatedCitation, OriginalVenue, FamilyId, FamilyRank, CreatedDate) FROM '../input/export/mag/Papers__.txt' NULL as '';
+\COPY mag.Papers(PaperId, Rank, Doi, DocType, Genre, IsParatext, PaperTitle, OriginalTitle, BookTitle, Year, Date, OnlineDate, Publisher, JournalId, ConferenceSeriesId, ConferenceInstanceId, Volume, Issue, FirstPage, LastPage, ReferenceCount, CitationCount, EstimatedCitation, OriginalVenue, FamilyId, FamilyRank, DocSubTypes, OaStatus, BestUrl, BestFreeUrl, BestFreeVersion, DoiLower, CreatedDate, UpdatedDate) FROM '../input/export/mag/Papers__.txt' NULL as '';
 
 CREATE INDEX idx_Papers_PaperTitle ON mag.Papers(PaperTitle);
 CREATE INDEX idx_Papers_OriginalTitle ON mag.Papers(OriginalTitle);
