@@ -419,10 +419,11 @@ CREATE TABLE mag.PaperFieldsOfStudy(
     id SERIAL PRIMARY KEY,
     PaperId BIGINT,
     FieldOfStudyId BIGINT,
-    Score FLOAT8
+    Score FLOAT8,
+    AlgorithmVersion INT
   );
 
-\COPY mag.PaperFieldsOfStudy(PaperId, FieldOfStudyId, Score) FROM '../input/export/advanced/PaperFieldsOfStudy.txt' null as '';
+\COPY mag.PaperFieldsOfStudy(PaperId, FieldOfStudyId, Score, AlgorithmVersion) FROM '../input/export/advanced/PaperFieldsOfStudy.txt' null as '';
 
 CREATE INDEX idx_PaperFieldsOfStudy_PaperId ON mag.PaperFieldsOfStudy(PaperId);
 CREATE INDEX idx_PaperFieldsOfStudy_FieldOfStudyId ON mag.PaperFieldsOfStudy(FieldOfStudyId);
