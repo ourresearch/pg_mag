@@ -35,8 +35,9 @@ CREATE TABLE mag.affiliations(
     AffiliationId BIGINT PRIMARY KEY,
     Rank INT,
     NormalizedName VARCHAR(150),
-    DisplayName VARCHAR(150),
+    DisplayName TEXT,
     GridId VARCHAR(15),
+    RorId TEXT,
     OfficialPage TEXT,
     WikiPage TEXT,
     PaperCount BIGINT,
@@ -46,10 +47,11 @@ CREATE TABLE mag.affiliations(
     Latitude FLOAT8,
     Longitude FLOAT8,
     CreatedDate DATE,
+    UpdatedDate DATE,
     geom geometry(POINT,4326)
   );
 
-\COPY mag.affiliations(AffiliationId, Rank, NormalizedName, DisplayName, GridId, OfficialPage, WikiPage, PaperCount, PaperFamilyCount, CitationCount, Iso3166Code, Latitude, Longitude, CreatedDate) FROM '../input/export/mag/Affiliations.txt' null as '';
+\COPY mag.affiliations(AffiliationId, Rank, NormalizedName, DisplayName, GridId, RorId, OfficialPage, WikiPage, PaperCount, PaperFamilyCount, CitationCount, Iso3166Code, Latitude, Longitude, CreatedDate, UpdatedDate) FROM '../input/export/mag/Affiliations.txt' null as '';
 
 CREATE INDEX idx_affiliations_NormalizedName ON mag.affiliations(NormalizedName);
 CREATE INDEX idx_affiliations_GridId ON mag.affiliations(GridId);
