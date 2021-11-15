@@ -313,10 +313,17 @@ CREATE TABLE mag.PaperUrls(
     PaperId BIGINT,
     SourceType SMALLINT,
     SourceUrl TEXT,
-    LanguageCode VARCHAR(10)
+    LanguageCode VARCHAR(10),
+    UrlForLandingPage TEXT,
+    UrlForPdf TEXT,
+    HostType TEXT,
+    Version TEXT,
+    License TEXT,
+    RepositoryInstitution TEXT,
+    OaiPmhId TEXT
   );
 
-\COPY mag.PaperUrls(PaperId, SourceType, SourceUrl, LanguageCode) FROM '../input/export/mag/PaperUrls.txt' WITH CSV delimiter E'\t'   QUOTE E'\b'  null as '';
+\COPY mag.PaperUrls(PaperId, SourceType, SourceUrl, LanguageCode, UrlForLandingPage, UrlForPdf, HostType, Version, License, RepositoryInstitution, OaiPmhId) FROM '../input/export/mag/PaperUrls.txt' WITH CSV delimiter E'\t'   QUOTE E'\b'  null as '';
 
 CREATE INDEX idx_PaperUrls_PaperId ON mag.PaperUrls(PaperId);
 
