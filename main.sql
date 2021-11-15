@@ -352,8 +352,7 @@ CREATE TABLE mag.PaperAbstractsInvertedIndex(
     IndexedAbstract JSONB
   );
 
-\COPY mag.PaperAbstractsInvertedIndex(PaperId, IndexedAbstract) FROM '../input/export/nlp/PaperAbstractsInvertedIndex.txt.1' null as '';
-\COPY mag.PaperAbstractsInvertedIndex(PaperId, IndexedAbstract) FROM '../input/export/nlp/PaperAbstractsInvertedIndex.txt.2' null as '';
+\COPY mag.PaperAbstractsInvertedIndex(PaperId, IndexedAbstract) FROM PROGRAM 'cat ../input/export/nlp/PaperAbstractsInvertedIndex.txt*' null as '';
 
 --------------------------------------------------------
 -- PaperCitationContexts
