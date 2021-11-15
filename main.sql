@@ -493,3 +493,23 @@ CREATE TABLE mag.RelatedFieldOfStudy(
 
 CREATE INDEX idx_RelatedFieldOfStudy_FieldOfStudyId1 ON mag.RelatedFieldOfStudy(FieldOfStudyId1);
 CREATE INDEX idx_RelatedFieldOfStudy_FieldOfStudyId2 ON mag.RelatedFieldOfStudy(FieldOfStudyId2);
+
+--------------------------------------------------------
+-- PaperMeSH
+--------------------------------------------------------
+DROP TABLE IF EXISTS mag.PaperMeSH;
+CREATE TABLE mag.PaperMeSH(
+    id SERIAL PRIMARY KEY,
+    PaperId BIGINT,
+    DescriptorUI TEXT,
+    DescriptorName TEXT,
+    QualifierUI TEXT,
+    QualifierName TEXT,
+    IsMajorTopic BOOLEAN
+  );
+
+\COPY mag.PaperMeSH(PaperId, DescriptorUI, DescriptorName, QualifierUI, QualifierName, IsMajorTopic) FROM '../input/export/advanced/PaperMeSH.txt' null as '';
+
+CREATE INDEX idx_PaperMeSH_PaperId ON mag.PaperMeSH(PaperId);
+CREATE INDEX idx_PaperMeSH_DescriptorUI ON mag.PaperMeSH(DescriptorUI);
+CREATE INDEX idx_PaperMeSH_QualifierUI ON mag.PaperMeSH(QualifierUI);
