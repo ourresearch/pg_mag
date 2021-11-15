@@ -167,15 +167,19 @@ CREATE TABLE mag.Journals(
     NormalizedName VARCHAR(255),
     DisplayName VARCHAR(255),
     Issn VARCHAR(15),
-    Publisher VARCHAR(100),
+    Issns TEXT,
+    IsOa BOOLEAN,
+    IsInDoaj BOOLEAN,
+    Publisher TEXT,
     Webpage TEXT,
     PaperCount BIGINT,
     PaperFamilyCount BIGINT,
     CitationCount BIGINT,
-    CreatedDate DATE
+    CreatedDate DATE,
+    UpdatedDate DATE
   );
 
-\COPY mag.Journals(JournalId, Rank, NormalizedName, DisplayName, Issn, Publisher, Webpage, PaperCount, PaperFamilyCount, CitationCount, CreatedDate) FROM '../input/export/mag/Journals.txt' null as '';
+\COPY mag.Journals(JournalId, Rank, NormalizedName, DisplayName, Issn, Issns, IsOa, IsInDoaj, Publisher, Webpage, PaperCount, PaperFamilyCount, CitationCount, CreatedDate, UpdatedDate) FROM '../input/export/mag/Journals.txt' null as '';
 
 CREATE INDEX idx_Journals_NormalizedName ON mag.Journals(NormalizedName);
 CREATE INDEX idx_Journals_Issn ON mag.Journals(Issn);
