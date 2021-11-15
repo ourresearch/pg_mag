@@ -87,14 +87,16 @@ CREATE TABLE mag.Authors(
     Rank INT,
     NormalizedName VARCHAR(200),
     DisplayName VARCHAR(400),
+    Orcid TEXT,
     LastKnownAffiliationId BIGINT,
     PaperCount BIGINT,
     PaperFamilyCount BIGINT,
     CitationCount BIGINT,
-    CreatedDate DATE
+    CreatedDate DATE,
+    UpdatedDate DATE
   );
 
-\COPY mag.Authors(AuthorId, Rank, NormalizedName, DisplayName, LastKnownAffiliationId, PaperCount, PaperFamilyCount, CitationCount, CreatedDate) FROM '../input/export/mag/Authors.txt' null as '';
+\COPY mag.Authors(AuthorId, Rank, NormalizedName, DisplayName, Orcid, LastKnownAffiliationId, PaperCount, PaperFamilyCount, CitationCount, CreatedDate, UpdatedDate) FROM '../input/export/mag/Authors.txt' null as '';
 
 CREATE INDEX idx_Authors_NormalizedName ON mag.Authors(NormalizedName);
 CREATE INDEX idx_Authors_LastKnownAffiliationId ON mag.Authors(LastKnownAffiliationId);
