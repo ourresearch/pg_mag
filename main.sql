@@ -198,12 +198,7 @@ CREATE TABLE mag.PaperAuthorAffiliations(
     OriginalAffiliation TEXT
   );
 
--- The input files may required some modifications
-\! sed -e 's/\\/\\\\/g' < PaperAuthorAffiliations.txt > PaperAuthorAffiliations_.txt
-\! tr -d '\000' < PaperAuthorAffiliations_.txt > PaperAuthorAffiliations__.txt
-
-
-\COPY mag.PaperAuthorAffiliations(PaperId, AuthorId, AffiliationId, AuthorSequenceNumber, OriginalAuthor, OriginalAffiliation)  FROM '../input/export/mag/PaperAuthorAffiliations__.txt' NULL as '';
+\COPY mag.PaperAuthorAffiliations(PaperId, AuthorId, AffiliationId, AuthorSequenceNumber, OriginalAuthor, OriginalAffiliation)  FROM '../input/export/mag/PaperAuthorAffiliations.txt' NULL as '';
 
 CREATE INDEX idx_PaperAuthorAffiliations_PaperId ON mag.PaperAuthorAffiliations(PaperId);
 CREATE INDEX idx_PaperAuthorAffiliations_AuthorId ON mag.PaperAuthorAffiliations(AuthorId);
