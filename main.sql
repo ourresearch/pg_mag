@@ -47,7 +47,7 @@ CREATE TABLE mag.affiliations(
     Latitude FLOAT8,
     Longitude FLOAT8,
     CreatedDate DATE,
-    UpdatedDate DATE,
+    UpdatedDate timestamp without time zone,
     geom geometry(POINT,4326)
   );
 
@@ -93,7 +93,7 @@ CREATE TABLE mag.Authors(
     PaperFamilyCount BIGINT,
     CitationCount BIGINT,
     CreatedDate DATE,
-    UpdatedDate DATE
+    UpdatedDate timestamp without time zone
   );
 
 \COPY mag.Authors(AuthorId, Rank, NormalizedName, DisplayName, Orcid, LastKnownAffiliationId, PaperCount, PaperFamilyCount, CitationCount, CreatedDate, UpdatedDate) FROM '../input/export/mag/Authors.txt' null as '';
@@ -176,7 +176,7 @@ CREATE TABLE mag.Journals(
     PaperFamilyCount BIGINT,
     CitationCount BIGINT,
     CreatedDate DATE,
-    UpdatedDate DATE
+    UpdatedDate timestamp without time zone
   );
 
 \COPY mag.Journals(JournalId, Rank, NormalizedName, DisplayName, Issn, Issns, IsOa, IsInDoaj, Publisher, Webpage, PaperCount, PaperFamilyCount, CitationCount, CreatedDate, UpdatedDate) FROM '../input/export/mag/Journals.txt' null as '';
@@ -279,7 +279,7 @@ CREATE TABLE mag.Papers(
     BestFreeVersion TEXT,
     DoiLower TEXT,
     CreatedDate TEXT,
-    UpdatedDate DATE
+    UpdatedDate timestamp without time zone
   );
 
 
@@ -332,7 +332,7 @@ CREATE TABLE mag.PaperUrls(
     OaiPmhId TEXT
   );
 
-\COPY mag.PaperUrls(PaperId, SourceType, SourceUrl, LanguageCode, UrlForLandingPage, UrlForPdf, HostType, Version, License, RepositoryInstitution, OaiPmhId) FROM '../input/export/mag/PaperUrls.txt' WITH CSV delimiter E'\t'   QUOTE E'\b'  null as '';
+\COPY mag.PaperUrls(PaperId, SourceType, SourceUrl, LanguageCode, UrlForLandingPage, UrlForPdf, HostType, Version, License, RepositoryInstitution, OaiPmhId) FROM '../input/export/mag/PaperUrls.txt' delimiter E'\t' null as '';
 
 CREATE INDEX idx_PaperUrls_PaperId ON mag.PaperUrls(PaperId);
 
