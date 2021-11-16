@@ -198,7 +198,9 @@ CREATE TABLE mag.PaperAuthorAffiliations(
     OriginalAffiliation TEXT
   );
 
-\COPY mag.PaperAuthorAffiliations(PaperId, AuthorId, AffiliationId, AuthorSequenceNumber, OriginalAuthor, OriginalAffiliation)  FROM '../input/export/mag/PaperAuthorAffiliations.txt' NULL as '';
+\! tr -d '\000' < PaperAuthorAffiliations.txt > PaperAuthorAffiliations_.txt
+
+\COPY mag.PaperAuthorAffiliations(PaperId, AuthorId, AffiliationId, AuthorSequenceNumber, OriginalAuthor, OriginalAffiliation)  FROM '../input/export/mag/PaperAuthorAffiliations_.txt' NULL as '';
 
 CREATE INDEX idx_PaperAuthorAffiliations_PaperId ON mag.PaperAuthorAffiliations(PaperId);
 CREATE INDEX idx_PaperAuthorAffiliations_AuthorId ON mag.PaperAuthorAffiliations(AuthorId);
@@ -277,8 +279,9 @@ CREATE TABLE mag.Papers(
     UpdatedDate timestamp without time zone
   );
 
+\! tr -d '\000' < Papers.txt > Papers_.txt
 
-\COPY mag.Papers(PaperId, Rank, Doi, DocType, Genre, IsParatext, PaperTitle, OriginalTitle, BookTitle, Year, Date, OnlineDate, Publisher, JournalId, ConferenceSeriesId, ConferenceInstanceId, Volume, Issue, FirstPage, LastPage, ReferenceCount, CitationCount, EstimatedCitation, OriginalVenue, FamilyId, FamilyRank, DocSubTypes, OaStatus, BestUrl, BestFreeUrl, BestFreeVersion, DoiLower, CreatedDate, UpdatedDate) FROM '../input/export/mag/Papers.txt' NULL as '';
+\COPY mag.Papers(PaperId, Rank, Doi, DocType, Genre, IsParatext, PaperTitle, OriginalTitle, BookTitle, Year, Date, OnlineDate, Publisher, JournalId, ConferenceSeriesId, ConferenceInstanceId, Volume, Issue, FirstPage, LastPage, ReferenceCount, CitationCount, EstimatedCitation, OriginalVenue, FamilyId, FamilyRank, DocSubTypes, OaStatus, BestUrl, BestFreeUrl, BestFreeVersion, DoiLower, CreatedDate, UpdatedDate) FROM '../input/export/mag/Papers_.txt' NULL as '';
 
 CREATE INDEX idx_Papers_PaperTitle ON mag.Papers(PaperTitle);
 CREATE INDEX idx_Papers_OriginalTitle ON mag.Papers(OriginalTitle);
