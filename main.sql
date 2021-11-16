@@ -278,7 +278,7 @@ CREATE TABLE mag.Papers(
     BestFreeUrl TEXT,
     BestFreeVersion TEXT,
     DoiLower TEXT,
-    CreatedDate DATE,
+    CreatedDate TEXT,
     UpdatedDate DATE
   );
 
